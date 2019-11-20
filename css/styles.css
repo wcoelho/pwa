@@ -1,0 +1,31 @@
+.img-card {
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 30px;
+}
+
+.center {
+    text-align: center;
+}
+
+.topbar {
+    padding: 10px;
+    background-color: darkgrey;
+}
+
+.toptitle {
+    color: brown;
+    font-weight: 800;
+    font-size: 24px;
+    margin: auto;
+}
+
+.searchinput {
+    margin-bottom: 10px;
+}
+
+.card {
+    margin: auto;
+    margin-top: 15px;
+}
