@@ -21,7 +21,7 @@ async function getData()
     await client.get(url, function(response) {
         this.result=response;
     });
-
+    
     mountTable();
     
 }
@@ -29,7 +29,7 @@ async function getData()
 var mountTable = () =>
 {
     var jsonResult = JSON.parse(this.result.toString().replace("\"{","{").replace("}\"","}"));
-    var str = "<table><tr><td>Apresentação</td><td>Preço</td></tr>";
+    var str = "<table class='myTable'><tr><td>Apresentação</td><td>Preço</td></tr>";
     for (var item of jsonResult.products) {
         str += "<tr><td>" + item.presentation + "</td>"
         str += "<td>" + item.regular_price + "</td></tr>"

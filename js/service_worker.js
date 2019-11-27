@@ -22,35 +22,68 @@ const FILES_TO_CACHE = [
 	"/icons/512.png"
 ];
 
-//Gravando arquivos estáticos - Somente par montar front-end
+//Gravando arquivos arquivos estáticos - Somente para montar Front-end
 
-self.addEventListener("install", (evt) => {
-    console.log("{Service Worker} Instalando caches estáticos");
+self.addEventListener('install', evt =>{
+
+    console.log("[Service Worker] Instalando caches estáticos");
+
+    
     evt.waitUntil(
+
+
         caches.open(CACHE_NAME).then((cache) => {
+            
             return cache.addAll(FILES_TO_CACHE);
-        }));
+
+        })
+        
+    );
 
     self.skipWaiting();
 
 });
 
-//Ativando o service worker e removendo cache antigo
+//Ativando o Service Worker e removendo cache antigo
 
-self.addEventListener("acivate", (evt) => {
-    console.log("{Service Worker} Ativando e removendo cache antigo");
+
+self.addEventListener('activate', (evt) => {
+
+    console.log("[Service Worker] Ativando e removendo cache antigo");
 
     evt.waitUntil(
-        caches.keys().then((keylist) => {
-            return Promise.all(keylist.map((key) => {
-                if(key !== CACHE_NAME)
-                {
-                    return caches.delete(key);
-                }
-            }))
-        }));
 
+        caches.keys().then((keyList) => {
+
+            return Promise.all(keyList.map((key) =>{
+
+                if(key !== CACHE_NAME){
+
+                    return caches.delete(key);
+    
+                }
+
+            }));
+
+        })        
+    );  
     self.clients.claim();
 });
 
-//Respondendo
+//Respondendo a página offline
+
+self.addEventListener('fetch', function(event) {
+
+    event.respondWith(
+      caches.match(event.request).then(function(resp) {
+        return resp || fetch(event.request).then(function(response) {
+          caches.open(CACHE_NAME).then(function(cache) {
+            //cache.put(event.request, response.clone());
+          });
+          return response;
+        });
+      }).catch(function() {
+        return caches.match('/offline.html');
+      })
+    );
+  });
