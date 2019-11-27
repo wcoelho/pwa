@@ -1,0 +1,26 @@
+[
+    {
+      "nome": "Donaren",
+      "url": "images/1016-300x300.jpg",      
+      "preco":25.21,
+      "descricao":"Donaren 30mg"
+    },
+    {
+      "nome": "Novalgina",
+      "url": "images/1018-300x300.jpg",
+      "preco":8.22,
+      "descricao":"Novalgina Gotas"
+    },
+    {
+      "nome": "Cebion",
+      "url": "images/1021-300x300.jpg",
+      "preco":16.22,
+      "descricao":"Cebion 30mg"
+    },
+    {
+      "nome": "Atenolol",
+      "url": "images/101-300x300.jpg",
+      "preco":25.23,
+      "descricao":"Atenolol 25mg / 30cps"
+    }
+  ]
