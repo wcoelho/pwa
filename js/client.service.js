@@ -30,6 +30,7 @@ function clearSearch(){
     document.getElementById("divResult").style.visibility='hidden';
     document.getElementById("search").value="";
     document.getElementById("divResult").innerHTML="";
+    this.result={};
 }
 
 var prepareResult = () =>
