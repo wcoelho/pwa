@@ -23,19 +23,13 @@ async function getData()
     });
     
     prepareResult();
-
-    document.getElementById("btnSearch").style.visibility='hidden';
-    document.getElementById("btnReset").style.visibility='visible';
     
 }
 
 function clearSearch(){
-    document.getElementById("btnSearch").style.visibility='visible';
-    document.getElementById("btnReset").style.visibility='hidden';
     document.getElementById("divResult").style.visibility='hidden';
     document.getElementById("search").value="";
     document.getElementById("divResult").innerHTML="";
-
 }
 
 var prepareResult = () =>
@@ -43,12 +37,19 @@ var prepareResult = () =>
     var jsonResult = JSON.parse(this.result.toString().replace("\"{","{").replace("}\"","}"));
     var str = "<span class='center'><strong>Nenhum produto encontrado</strong></span>";
     if(jsonResult.products.length>0)
-        str = "<span class='center'><strong>Encontrados " + jsonResult.products.length + " produtos</strong></span>";
+        str = "<br><span class='center'><strong>%%</strong></span>";
+
+    var counter=jsonResult.products.length;
 
     for (var item of jsonResult.products) {
-        if(item.priceRange==0) continue;
+        if(item.priceRange==0)
+        {
+            counter--;
+            continue;
+        } 
         str += "<div class='card-body'>";
         str += "<strong>Nome Comercial:</strong> " + item.comercial_name + "<br>";
+        str += "<strong>Laboratório:</strong> " + item.laboratory + "<br>";
         str += "<strong>Apresentação: </strong>" + item.presentation + "<br>";
         
 
@@ -63,7 +64,16 @@ var prepareResult = () =>
 
     } 
         
-    console.log(str);
+    if(counter>0)
+    {
+        if(counter==1)
+            msg = "Encontrado 1 produto"        
+        else
+            msg = "Encontrados " + counter + " produtos"
+
+        str = str.replace("%%", msg);
+    }
+
     document.getElementById("divResult").innerHTML = str;
     document.getElementById("divResult").style.visibility = 'visible';
 }
