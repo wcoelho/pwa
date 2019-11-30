@@ -36,9 +36,7 @@ function clearSearch(){
 var prepareResult = () =>
 {
     var jsonResult = JSON.parse(this.result.toString().replace("\"{","{").replace("}\"","}"));
-    var str = "<span class='center'><strong>Nenhum produto encontrado</strong></span>";
-    if(jsonResult.products.length>0)
-        str = "<br><span class='center'><strong>%%</strong></span>";
+    var str = "<span class='center'><strong>%%</strong></span>";
 
     var counter=jsonResult.products.length;
 
@@ -68,12 +66,16 @@ var prepareResult = () =>
     if(counter>0)
     {
         if(counter==1)
-            msg = "Encontrado 1 produto"        
+            msg = "<br>Encontrado 1 produto"        
         else
-            msg = "Encontrados " + counter + " produtos"
+            msg = "<br>Encontrados " + counter + " produtos"
 
-        str = str.replace("%%", msg);
+        
+    } else {
+        msg = "Nenhum produto encontrado";
     }
+    
+    str = str.replace("%%", msg);
 
     document.getElementById("divResult").innerHTML = str;
     document.getElementById("divResult").style.visibility = 'visible';
