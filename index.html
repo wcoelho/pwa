@@ -62,30 +62,31 @@
       <div class="row">
         <!--Main card-->
         <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="card" style="width: 18rem;">
+            <div class="card" id="divSearch">
+              <!--main-->
               <img src="img/medicine.jpg" class="card-img-top img-card" alt="...">
               <div class="card-body center">
-                <h5 class="card-title">Medicamentos</h5>
-                <p class="card-text">Encontre seu medicamento sem sair de casa!</p>
+                <h5 class="card-title">Saúde com Economia</h5>
+                <p class="card-text">Encontre a média de preços do seu medicamento</p>
                 <input type="text" id="search" #search class="searchinput">
-                <a href="#" class="btn btn-primary"  onclick="getData()">Pesquisar</a>
+                <a href="#" class="btn btn-primary" id="btnSearch" style="position:relative" onclick="getData()">Pesquisar</a>
+                <a href="#" class="btn btn-primary"  id="btnReset" style="visibility: hidden; position:absolute" onclick="clearSearch()">Limpar</a>
               </div>
             </div>
-        </div>
-        <!---->
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <div class="card" style="width: 18rem;">
-              <div class="resultTable" id="table"></div>
-          </div>
+            <!--result-->
+            <div class="card result" style="visibility: hidden" id="divResult"></div>   
         </div>
 
       </div>
+        <!---->
+        <!--Result-->
+   
     </div>
 
-    <div class="footer">
-      Copyright© 2019 - Todos os direitos reservados
+      <div class="footer">
+        Copyright© 2019 - Todos os direitos reservados
+      </div>
 
-    </div>
 
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
@@ -94,7 +95,7 @@
     <script src="js/bootstrap.min.js" ></script>
     <script src="js/init.js" ></script>
     <script src="js/menu.js" ></script>
-    <script src="js/utils.js"></script>
+    <script src="js/client.service.js"></script>
     <script>
 
       let swRegistration = null;

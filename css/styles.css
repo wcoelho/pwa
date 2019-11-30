@@ -5,13 +5,23 @@
     border-radius: 30px;
 }
 
-.resultTable {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 8px;   
+.absolute {
+    position: absolute;
 }
 
-.myTable.td {
-    border: solid;
+.resultDiv {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 8px;    
+}
+
+th {
+    text-align: center;
+    font-weight: 700;
+}
+
+td,th{
+    border: solid 1pt;
+    border-color: grey;
 }
 
 .center {
@@ -25,6 +35,7 @@
 .card {
     margin: auto;
     margin-top: 15px;
+    width: 18rem; 
 }
 
 .menu_pricipal .nav-item{
@@ -34,6 +45,13 @@
 .content{
     margin-top: 80px;
     margin-bottom: 50px;
+}
+
+.result{
+    font-size: 12px;
+    margin-top: 20px !important;
+    margin-bottom: 40px;    
+    margin: auto
 }
  
 .footer{
