@@ -43,6 +43,7 @@ function openMedicineData(medicine){
 async function getData()
 {    
     document.getElementById("loading").style.visibility='visible';
+    document.getElementById("search").disabled=true;
     var client = new HttpClient();
     var medicine = document.getElementById('search').value;
     var url = "https://figgy.com.br/ws/products/" + medicine + "/-19/-43";
@@ -50,6 +51,7 @@ async function getData()
         this.result=response;
         prepareResult();
         document.getElementById("loading").style.visibility='hidden';
+        document.getElementById("search").disabled=false;
     });   
     
 }
@@ -57,6 +59,7 @@ async function getData()
 function clearSearch(){
     document.getElementById("divResult").style.visibility='hidden';
     document.getElementById("search").value="";
+    document.getElementById("search").disabled=false;
     document.getElementById("divResult").innerHTML="";
     if(document.getElementById("hiddenForm")!=undefined)
         document.getElementById("hiddenForm").innerHTML="";
