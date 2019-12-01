@@ -65,22 +65,26 @@
             <div class="card" id="divSearch">
               <!--main-->
               <img src="img/medicine.jpg" class="card-img-top img-card" alt="...">
-              <div class="card-body center">
-                <h5 class="card-title">Saúde com Economia</h5>
-                <p class="card-text">Encontre a média de preços do seu medicamento</p>
-                <input type="text" id="search" #search class="searchinput">
+
+              <div class="card-body center">                
+                <h5 class="card-title">Saúde com Economia</h5>                
+                <p class="card-text">Encontre a média de preços e a bula do seu medicamento</p>                
+                <input type="text" onclick="clearSearch()" id="search" #search class="searchinput">                
                 <a href="#" class="btn btn-primary" id="btnSearch" onclick="getData()">Pesquisar</a>
-                <a href="#" class="btn btn-primary"  id="btnReset" onclick="clearSearch()">Limpar</a>
+                <!--<a href="#" class="btn btn-primary"  id="btnReset" onclick="clearSearch()">Limpar</a>-->
+                
+              </div>
+              <div id="loading" style="visibility: hidden; position: absolute; z-index: 10; margin-left: 10%; margin-top: 55%" >
+                  <img src="./img/loading.gif" height="150px">
               </div>
             </div>
+            
             <!--result-->
             <div class="card result" style="visibility: hidden" id="divResult"></div>   
         </div>
 
       </div>
-        <!---->
-        <!--Result-->
-   
+ 
     </div>
 
       <div class="footer">

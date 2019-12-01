@@ -9,7 +9,7 @@ const FILES_TO_CACHE = [
     "/js/jquery-3.3.1.min.js",
     "/js/menu.js",
     "/js/popper.min.js",
-    "/js/utils.js",
+    "/js/client.service.js",
     "/css/styles.css",
     "/css/bootstrap.min.css",
     "/img/offline.jpg",
