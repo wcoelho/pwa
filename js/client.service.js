@@ -14,46 +14,94 @@ var HttpClient = function() {
 }
 
 function openMedicineData(medicine){
-    var mapForm = document.createElement("form");
-    mapForm.id = "hiddenForm";
-    mapForm.target = "Map";
-    mapForm.method = "POST"; // or "post" if appropriate
-    mapForm.action = "http://www.anvisa.gov.br/datavisa/fila_bula/frmResultado.asp";
+
+    try {
+
+        var mapForm = document.createElement("form");
+        mapForm.id = "hiddenForm";
+        mapForm.target = "Map";
+        mapForm.method = "POST"; // or "post" if appropriate
+        mapForm.action = "http://www.anvisa.gov.br/datavisa/fila_bula/frmResultado.asp";
 
 
-    var mapInput = document.createElement("input");
-    mapInput.type = "text";
-    mapInput.name = "txtMedicamento";
-    mapInput.value = medicine;
-    mapInput.id = "txtMedicamento";
-    mapInput.style = "visibility: hidden";
-    mapForm.appendChild(mapInput);
+        var mapInput = document.createElement("input");
+        mapInput.type = "text";
+        mapInput.name = "txtMedicamento";
+        mapInput.value = medicine;
+        mapInput.id = "txtMedicamento";
+        mapInput.style = "visibility: hidden";
+        mapForm.appendChild(mapInput);
 
-    document.body.appendChild(mapForm);
+        document.body.appendChild(mapForm);
 
-    map = window.open("", "Map", "status=0,title=0,scrollbars=1");
+        map = window.open("", "Map", "status=0,title=0,scrollbars=1");
 
-    if (map) {
-        mapForm.submit();
-    } else {
-        alert('Você deve permitir popup para o correto funcionamento do aplicativo.');
+        if (map) {
+            mapForm.submit();
+        } else {
+            alert('Você deve permitir popup para o correto funcionamento do aplicativo.');
+        }
+
+    }catch (Exception) {
+        document.getElementById("divResult").innerHTML = "Houve problema de conexão";
+        document.getElementById("divResult").style.visibility = 'visible';
     }
 }
 
 async function getData()
-{    
-    document.getElementById("loading").style.visibility='visible';
-    document.getElementById("search").disabled=true;
-    var client = new HttpClient();
-    var medicine = document.getElementById('search').value;
-    var url = "https://figgy.com.br/ws/products/" + medicine + "/-19/-43";
-    await client.get(url, function(response) {
-        this.result=response;
-        prepareResult();
-        document.getElementById("loading").style.visibility='hidden';
-        document.getElementById("search").disabled=false;
-    });   
+{  
+    if(!offline)
+    {
+        try{
+            document.getElementById("loading").style.visibility='visible';
+            document.getElementById("search").disabled=true;
+            var client = new HttpClient();
+            var medicine = document.getElementById('search').value;
+            var url = "https://figgy.com.br/ws/products/" + medicine + "/-19/-43";
+            await client.get(url, function(response) {
+                this.result=response;                
+                prepareResult();                
+                document.getElementById("loading").style.visibility='hidden';
+                document.getElementById("search").disabled=false;
+            });
+        }catch (Exception) {
+            document.getElementById("divResult").innerHTML = "Houve problema de conexão";
+            document.getElementById("divResult").style.visibility = 'visible';
+        }
+    }else {
+
+        getDataOffline();
+    }
     
+}
+
+function getDataOffline()
+{
+    console.log("Lendo arquivo de dados offline");
+    var ajax = new XMLHttpRequest();
+ 
+    ajax.open("GET", "dados.json",true);
+    ajax.send();
+    
+    ajax.onreadystatechange = function(){
+    
+        //Verificar se JSON foi baixado com sucesso
+        if(ajax.readyState == 4 && ajax.status == 200){
+    
+            var data = ajax.responseText;
+            var data_json = JSON.parse(data);
+    
+            if(data_json.length == 0){
+                document.getElementById("divResult").innerHTML = "Houve problema de ao ler os dados em modo offline";
+                document.getElementById("divResult").style.visibility = 'visible';
+               
+            }else{
+
+                this.result = data_json;
+                prepareResult();
+            }
+        }
+    }
 }
 
 function clearSearch(){
@@ -113,4 +161,9 @@ var prepareResult = () =>
 
     document.getElementById("divResult").innerHTML = str;
     document.getElementById("divResult").style.visibility = 'visible';
+
+    setTimeout(function(){
+        cache_cards(jsonResult.products);
+    },2000);
+
 }

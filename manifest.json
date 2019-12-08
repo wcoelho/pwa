@@ -1,6 +1,6 @@
 {
-  "name": "Busca Drogarias - Walter",
-  "short_name": "Drogarias - Walter",
+  "name": "Pesquisa de Medicamentos - Walter",
+  "short_name": "Medicamentos - Walter",
   "icons": [{
     "src": "icons/128.png",
     "sizes": "128x128",

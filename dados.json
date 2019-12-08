@@ -1,26 +1,42 @@
-[
-    {
-      "nome": "Donaren",
-      "url": "images/1016-300x300.jpg",      
-      "preco":25.21,
-      "descricao":"Donaren 30mg"
-    },
-    {
-      "nome": "Novalgina",
-      "url": "images/1018-300x300.jpg",
-      "preco":8.22,
-      "descricao":"Novalgina Gotas"
-    },
-    {
-      "nome": "Cebion",
-      "url": "images/1021-300x300.jpg",
-      "preco":16.22,
-      "descricao":"Cebion 30mg"
-    },
-    {
-      "nome": "Atenolol",
-      "url": "images/101-300x300.jpg",
-      "preco":25.23,
-      "descricao":"Atenolol 25mg / 30cps"
-    }
-  ]
+{"result":
+  {
+    "status":0,
+    "message":"Sucesso"
+  },
+    "products":
+    [
+      {
+        "internal_code":null,
+        "description":"donaren",
+        "presentation":"50 MG - COMPRIMIDO REVESTIDO - CT BL AL PLAS TRANS X 60",
+        "sale_price":"0.0",
+        "drugstore_id":44,
+        "created_at":"2015-08-26T14:13:00.000-03:00",
+        "updated_at":"2018-12-29T16:15:00.000-02:00",
+        "amount":1,"fixed_field":null,
+        "laboratory":"APSEN FARMACEUTICA S/A",
+        "promo_price":"0.0","promo_percent":null,
+        "act_princ":"",
+        "ean_code":"7896637022767",
+        "regular_price":"84.1",
+        "ms_code":"",
+        "partner_id":"1",
+        "farmacy_form":"",
+        "comercial_name":"Donaren",
+        "product_type":" ",
+        "threshold_yellow":3,
+        "threshold_red":2,
+        "id":47253902,
+        "todelete":false,
+        "topresent":true,
+        "promo_type":null,
+        "promo_min":null,
+        "promo_startdate":null,
+        "promo_enddate":null,
+        "price_fraction":null,
+        "priceRange":"80.3",
+        "foundDrugstores":5,
+        "portaria":"C1"
+      }
+   ]
+}
